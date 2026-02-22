@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Minha Esposa ❤️</title>
+    <style>
+        /* CONFIGURAÇÕES DE ANIMAÇÃO E FUNDO */
+        @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        @keyframes moveBubbles { from { transform: translateY(100vh) scale(0.5); opacity: 0; } to { transform: translateY(-10vh) scale(1.2); opacity: 0.3; } }
+        @keyframes fly { to { transform: translate(var(--tw), var(--th)) rotate(var(--tr)); opacity: 0; } }
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background: linear-gradient(-45deg, #0f0f12, #1a1a2e, #2b102b, #0f0f12);
+            background-size: 400% 400%; animation: gradientBG 15s ease infinite;
+            color: white; font-family: 'Poppins', sans-serif; height: 100vh;
+            display: flex; justify-content: center; align-items: center; overflow: hidden; position: relative;
+        }
+
+        /* ELEMENTOS VISUAIS */
+        .bubble { position: absolute; bottom: -100px; background-color: rgba(255, 255, 255, 0.05); border-radius: 50%; pointer-events: none; animation: moveBubbles linear infinite; }
+        .heart-particle { position: fixed; pointer-events: none; font-size: 20px; z-index: 9999; animation: fly 1s ease-out forwards; }
+        
+        .container { 
+            text-align: center; width: 90%; max-width: 500px; z-index: 10; 
+            max-height: 85vh; overflow-y: auto; padding: 20px;
+            scrollbar-width: none; /* Esconde scroll no Firefox */
+        }
+        .container::-webkit-scrollbar { display: none; } /* Esconde scroll no Chrome/Safari */
+
+        .hidden { display: none !important; }
+        .fade-in { animation: fadeIn 0.5s ease-out forwards; }
+
+        /* BOTÕES */
+        .btn { 
+            display: block; width: 100%; padding: 15px; margin: 12px 0; border: none; border-radius: 15px; 
+            color: white; font-weight: bold; font-size: 1rem; cursor: pointer; transition: 0.3s; 
+            text-transform: uppercase; backdrop-filter: blur(5px);
+        }
+        .btn:hover { transform: translateY(-3px); filter: brightness(1.2); }
+        .btn-main { background: linear-gradient(45deg, #6a11cb, #2575fc); box-shadow: 0 8px 15px rgba(37,117,252,0.3); }
+        .btn-menu { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255,255,255,0.1); }
+        .btn-secret { background: linear-gradient(45deg, #ff416c, #ff4b2b); margin-top: 30px; }
+
+        /* CARDS E CONTEÚDO */
+        .card { background: rgba(255,255,255,0.05); padding: 15px; border-radius: 15px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.1); }
+        .foto-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .foto-item { width: 100%; border-radius: 10px; border: 2px solid rgba(255,255,255,0.1); }
+        .carta-texto { text-align: left; line-height: 1.6; font-style: italic; font-size: 0.95rem; white-space: pre-wrap; }
+        audio { width: 100%; height: 35px; margin-top: 10px; }
+        input { padding: 15px; border-radius: 10px; width: 80%; margin: 20px 0; text-align: center; border: none; background: rgba(255,255,255,0.1); color: white; font-size: 1.2rem; }
+    </style>
+</head>
+<body>
+
+    <div id="particles"></div>
+
+    <div id="tela1" class="container fade-in">
+        <button class="btn btn-main" onclick="acao(event, 'tela2')">Receba seu presente!</button>
+    </div>
+
+    <div id="tela2" class="container hidden">
+        <h2 style="margin-bottom: 20px;">Para Você ❤️</h2>
+        <button class="btn btn-menu" onclick="acao(event, 'telaAudios')">Riquezas do Luiz (Áudios)</button>
+        <button class="btn btn-menu" onclick="acao(event, 'telaFotos')">Nossas Fotos</button>
+        <button class="btn btn-menu" onclick="acao(event, 'telaCarta')">Minha Confissão</button>
+        <button class="btn btn-secret" onclick="acao(event, 'telaSenha')">🔒 Secreto</button>
+    </div>
+
+    <div id="telaAudios" class="container hidden">
+        <h2>Minha Voz ❤️</h2>
+        <div class="card">
+            <p>Ouça isso...</p>
+            <audio controls><source src="audio1.mp3" type="audio/mpeg"></audio>
+        </div>
+        <div class="card">
+            <p>Mais um carinho...</p>
+            <audio controls><source src="audio2.mp3" type="audio/mpeg"></audio>
+        </div>
+        <button class="btn btn-menu" onclick="acao(event, 'tela2')">Voltar</button>
+    </div>
+
+    <div id="telaFotos" class="container hidden">
+        <h2 style="margin-bottom: 15px;">Momentos Lindos</h2>
+        <div class="foto-grid">
+            <img src="foto1.jpg" class="foto-item" alt="Foto 1">
+            <img src="foto2.jpg" class="foto-item" alt="Foto 2">
+            <img src="foto3.jpg" class="foto-item" alt="Foto 3">
+            <img src="foto4.jpg" class="foto-item" alt="Foto 4">
+        </div>
+        <button class="btn btn-menu" onclick="acao(event, 'tela2')">Voltar</button>
+    </div>
+
+    <div id="telaCarta" class="container hidden">
+        <h2>Minha Confissão</h2>
+        <div class="card">
+            <p class="carta-texto">
+Querida esposa,
+
+Escrevi este site para mostrar o quanto você é especial. 
+Cada detalhe aqui tem um pouco do meu amor por você.
+Obrigado por ser minha parceira de vida!
+
+Com amor, Luiz.
+            </p>
+        </div>
+        <button class="btn btn-menu" onclick="acao(event, 'tela2')">Voltar</button>
+    </div>
+
+    <div id="telaSenha" class="container hidden">
+        <h2>Área Restrita</h2>
+        <input type="password" id="inputSenha" placeholder="Digite a data">
+        <button class="btn btn-main" onclick="verificarSenha(event)">Desbloquear</button>
+    </div>
+
+    <div id="telaFinal" class="container hidden">
+        <h3 style="color:#ff4b2b; margin-bottom:15px;">Para minha esposa</h3>
+        <div class="card" style="padding: 30px;">
+             <p>🎬 [Thumbnail do Vídeo]</p>
+             <p style="font-size: 0.8rem; margin-top: 10px;">Aqui você pode colocar um vídeo do YouTube ou um arquivo seu!</p>
+        </div>
+        <button class="btn btn-menu" onclick="location.reload()">Recomeçar</button>
+    </div>
+
+    <script>
+        // LÓGICA DE EXPLOSÃO DE CORAÇÕES
+        function explodir(e) {
+            for (let i = 0; i < 12; i++) {
+                const c = document.createElement('div');
+                c.innerHTML = '❤️'; c.className = 'heart-particle';
+                c.style.left = e.clientX + 'px'; c.style.top = e.clientY + 'px';
+                c.style.setProperty('--tw', (Math.random() - 0.5) * 300 + 'px');
+                c.style.setProperty('--th', (Math.random() - 0.5) * 300 + 'px');
+                c.style.setProperty('--tr', Math.random() * 360 + 'deg');
+                document.body.appendChild(c);
+                setTimeout(() => c.remove(), 1000);
+            }
+        }
+
+        // TROCA DE TELA
+        function acao(e, id) {
+            explodir(e);
+            setTimeout(() => {
+                document.querySelectorAll('.container').forEach(t => t.classList.add('hidden'));
+                const p = document.getElementById(id);
+                p.classList.remove('hidden'); p.classList.add('fade-in');
+            }, 250);
+        }
+
+        // SENHA
+        function verificarSenha(e) {
+            if(document.getElementById('inputSenha').value === '04092024') acao(e, 'telaFinal');
+            else alert('Senha incorreta! ❤️');
+        }
+
+        // BOLHAS DE FUNDO
+        const pc = document.getElementById('particles');
+        for (let i = 0; i < 15; i++) {
+            const b = document.createElement('div'); b.className = 'bubble';
+            const s = Math.random() * 50 + 10 + 'px';
+            b.style.width = s; b.style.height = s; b.style.left = Math.random() * 100 + 'vw';
+            b.style.animationDuration = Math.random() * 8 + 4 + 's';
+            pc.appendChild(b);
+        }
+    </script>
+</body>
+</html>
