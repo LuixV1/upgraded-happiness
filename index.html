@@ -27,9 +27,9 @@
         .container { 
             text-align: center; width: 90%; max-width: 500px; z-index: 10; 
             max-height: 85vh; overflow-y: auto; padding: 20px;
-            scrollbar-width: none; /* Esconde scroll no Firefox */
+            scrollbar-width: none;
         }
-        .container::-webkit-scrollbar { display: none; } /* Esconde scroll no Chrome/Safari */
+        .container::-webkit-scrollbar { display: none; }
 
         .hidden { display: none !important; }
         .fade-in { animation: fadeIn 0.5s ease-out forwards; }
@@ -52,6 +52,10 @@
         .carta-texto { text-align: left; line-height: 1.6; font-style: italic; font-size: 0.95rem; white-space: pre-wrap; }
         audio { width: 100%; height: 35px; margin-top: 10px; }
         input { padding: 15px; border-radius: 10px; width: 80%; margin: 20px 0; text-align: center; border: none; background: rgba(255,255,255,0.1); color: white; font-size: 1.2rem; }
+        
+        /* Ajuste do Video para Mobile */
+        .video-container { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px; }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
     </style>
 </head>
 <body>
@@ -112,16 +116,24 @@ Com amor, Luiz.
 
     <div id="telaSenha" class="container hidden">
         <h2>Área Restrita</h2>
-        <input type="password" id="inputSenha" placeholder="Digite a data">
+        <p style="font-size: 0.8rem; margin-top: 5px;">(Dica: Data especial)</p>
+        <input type="password" id="inputSenha" placeholder="DDMMAAAA">
         <button class="btn btn-main" onclick="verificarSenha(event)">Desbloquear</button>
+        <button class="btn btn-menu" onclick="acao(event, 'tela2')">Sair</button>
     </div>
 
     <div id="telaFinal" class="container hidden">
         <h3 style="color:#ff4b2b; margin-bottom:15px;">Para minha esposa</h3>
-        <div class="card" style="padding: 30px;">
-             <p>🎬 [Thumbnail do Vídeo]</p>
-             <p style="font-size: 0.8rem; margin-top: 10px;">https://youtu.be/WVq7bFO84h0?si=6UxFzlmvM-U5pfz8"<Y
-             </p>
+        <div class="card" style="padding: 10px;">
+            <div class="video-container">
+                <iframe 
+                    src="https://www.youtube.com/embed/WVq7bFO84h0" 
+                    title="Michael Jackson - Heaven Can Wait" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
         </div>
         <button class="btn btn-menu" onclick="location.reload()">Recomeçar</button>
     </div>
@@ -151,10 +163,15 @@ Com amor, Luiz.
             }, 250);
         }
 
-        // SENHA
+        // SENHA (04/09/2024)
         function verificarSenha(e) {
-            if(document.getElementById('inputSenha').value === '04092024') acao(e, 'telaFinal');
-            else alert('Senha incorreta! ❤️');
+            const senha = document.getElementById('inputSenha').value;
+            if(senha === '04092024') {
+                acao(e, 'telaFinal');
+            } else {
+                alert('Senha incorreta! ❤️');
+                document.getElementById('inputSenha').value = '';
+            }
         }
 
         // BOLHAS DE FUNDO
